@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/file/{name?}', 'FileController@file');
+Route::get('/{path?}', function ($path = "login") { return view($path); });
+
+Route::post('/login', 'LoginController@login');
+Route::post('/register', 'LoginController@register');
+
+Route::post('/upload', 'FileController@upload');
