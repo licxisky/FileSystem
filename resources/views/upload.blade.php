@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>用户登陆</title>
+    <title>文件上传</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +36,10 @@
         .input-add:hover{
             background-color: #fff;
         }
-/*        input#file_name_replace:focus {
+        input#file_name_replace:focus {
             border-color: #ccc;
             box-shadow: none;
-        }*/
+        }
     </style>
 </head>
 
@@ -57,10 +57,10 @@
                     <button class="btn btn-default">新建文件夹</button>
                 </span>
             </div> -->
-            <input type="file" name="file" id="input_file" class="hidden">
+            <input type="file" name="file[]" id="input_file" class="hidden"  multiple="multiple">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <div class="input-group form-group">
-                <input type="text" name="filename" class="form-control" id="file_name_replace">
+                <input type="text" name="filename" class="form-control" id="file_name_replace" readonly="">
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="button" id="btn_file">选择文件</button>
                 </span>
@@ -89,6 +89,9 @@
           $('#file_name_replace').val($('#input_file').val().substring(12));
         });
   
+        @if(session()->get('message', '') != null)
+        alert('{{session()->get('message', '')}}');
+        @endif
     </script>
 </body>
 
